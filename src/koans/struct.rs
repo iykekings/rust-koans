@@ -12,8 +12,8 @@ fn our_first_struct() {
         age: 57,
     };
 
-    assert_eq!(jim.name, __);
-    assert_eq!(jim.age, __);
+    assert_eq!(jim.name, "Jim");
+    assert_eq!(jim.age, 57);
 }
 
 // Let's try another example
@@ -26,10 +26,10 @@ fn one_more_struct() {
 
     let movie = Movie {
         title: "Star Wars",
-        runtime: __,
+        runtime: 121,
     };
 
-    assert_eq!(movie.title, __);
+    assert_eq!(movie.title, "Star Wars");
     assert_eq!(movie.runtime, 121);
 }
 
@@ -43,13 +43,14 @@ fn mutable_structs() {
 
     let mut rust = Language { version: "1.3.0" };
 
-    __ = "1.4.0";
+    rust.version = "1.4.0";
 
     assert_eq!(rust.version, "1.4.0");
 }
 
 // We can also decide to temporarily allow a Struct to be mutable
 #[test]
+// #[should_panic]
 fn revoking_mutability() {
     struct Language {
         version: &'static str,
@@ -63,9 +64,9 @@ fn revoking_mutability() {
 
     let rust = rust;
 
-    rust.version = "1.5.0";
+    // rust.version = "1.5.0";
 
-    assert_eq!(rust.version, "1.5.0");
+    assert_eq!(rust.version, "1.4.0");
 }
 
 // There may be cases where you want to create a new instance of a Struct
@@ -84,8 +85,11 @@ fn dot_merging() {
         balance: 0.00,
     };
 
-    let rich = Account { balance: 1000000.00, ..broke };
+    let rich = Account {
+        balance: 1000000.00,
+        ..broke
+    };
 
-    assert_eq!(rich.holder, __);
-    assert_eq!(rich.balance, __);
+    assert_eq!(rich.holder, broke.holder);
+    assert_eq!(rich.balance, 1000000.00);
 }
