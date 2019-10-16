@@ -75,7 +75,7 @@ fn revoking_mutability() {
 fn dot_merging() {
     struct Account {
         holder: &'static str,
-        account_number: &'static str,
+        _account_number: &'static str,
         balance: f64,
     }
 
