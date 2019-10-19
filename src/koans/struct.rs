@@ -73,9 +73,10 @@ fn revoking_mutability() {
 // that is only slightly different from an existing one
 #[test]
 fn dot_merging() {
+    #[allow(dead_code)]
     struct Account {
         holder: &'static str,
-        _account_number: &'static str,
+        account_number: &'static str,
         balance: f64,
     }
 
